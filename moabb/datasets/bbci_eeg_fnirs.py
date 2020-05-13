@@ -128,9 +128,9 @@ class Shin2017(BaseDataset):
         ch_types = ['eeg'] * 30 + ['eog'] * 2 + ['stim']
 
         montage = make_standard_montage('standard_1005')
-        info = create_info(ch_names=ch_names, ch_types=ch_types,
-                           sfreq=200., montage=montage)
+        info = create_info(ch_names=ch_names, ch_types=ch_types, sfreq=200.)
         raw = RawArray(data=eeg, info=info, verbose=False)
+        raw.set_montage(montage)
         return {'run_0': raw}
 
     def data_path(self, subject, path=None, force_update=False,

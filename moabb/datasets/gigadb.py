@@ -104,9 +104,9 @@ class Cho2017(BaseDataset):
         log.warning("Trials demeaned and stacked with zero buffer to create "
                     "continuous data -- edge effects present")
 
-        info = create_info(ch_names=ch_names, ch_types=ch_types,
-                           sfreq=data.srate, montage=montage)
+        info = create_info(ch_names=ch_names, ch_types=ch_types, sfreq=data.srate)
         raw = RawArray(data=eeg_data, info=info, verbose=False)
+        raw.set_montage(montage)
 
         return {'session_0': {'run_0': raw}}
 
